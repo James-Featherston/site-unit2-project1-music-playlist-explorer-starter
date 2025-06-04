@@ -4,3 +4,58 @@ body {
     padding: 0;
     background-color: #f8f8f8;
 }
+
+header {
+    background-color: lightgrey;
+    height: 70px;
+    font-size: 20pt;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    border: 1px solid gray;
+    margin-bottom: 20px;
+}
+
+footer {
+    background-color: lightgrey;
+    height: 40px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border: 1px solid gray;
+}
+
+#header-list {
+    margin: 0px;
+    list-style-type: none;
+    color: dimgray;
+}
+
+.playlist-image {
+    max-width: 90%;
+    margin: 12px;
+    align-self: center;
+}
+#playlist-cards {
+    display: grid;
+    background-color: pink;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 0px 5% 0px 5%;
+    
+}
+
+.playlist-card {
+    width: 60%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    margin: auto;
+}
+
+h4 {
+    margin: 0px
+}
+
+
