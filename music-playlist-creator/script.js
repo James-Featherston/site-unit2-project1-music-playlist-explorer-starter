@@ -1,19 +1,22 @@
 // Load playlists
 
-const loadPlaylists = () => {
+const loadAllDOM = () => {
     let playlistsList = document.querySelector("#playlist-cards")
     for (const playlist of data) {
         const el = createPlaylistElement(playlist)
         playlistsList.appendChild(el)
         //Add an event listener for each heart button
-        createHeart(playlist.playlistID, playlist.likes)
+        createHeart(playlist)
     }
+
+    const shuffle = document.querySelector("#shuffle-button")
+
 }
 
 // Make sure the DOM content is loaded
 // Call the load playlists method
 document.addEventListener("DOMContentLoaded", () => {
-    loadPlaylists()
+    loadAllDOM()
 })
 
 
@@ -56,27 +59,71 @@ const updateModalDisplay = (playlist) => {
     playlistCreatorEl.textContent = playlist.playlistAuthor
     playlistImgEl.src = playlist.playlistArt
 
+    updateSongs(playlist)
+    const shuffle = document.querySelector("#shuffle-button")
+    const parent = document.querySelector("#shuffle-container")
+    const clone = shuffle.cloneNode(true)
+    parent.replaceChild(clone, shuffle)
+    const newShuffle = document.querySelector("#shuffle-button")
+    newShuffle.addEventListener("click", function (event) {
+        handleShuffle(playlist, event)
+    })
+}
+
+const handleShuffleClicker = null
+
+const handleShuffle = (playlist, event) => {
+    event.stopPropagation()
+    shuffleSongs(playlist)
+}
+
+const shuffleSongs = (playlist) => {
+    const songs = playlist.songs
+    for (let i = songs.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1))
+        let temp = songs[i]
+        songs[i] = songs[j]
+        songs[j] = temp
+    }
+    updateSongs(playlist)
+}
+
+const updateSongs = (playlist) => {
+    let songContainer = document.querySelector("#modal-rect2")
+    const elementsToClear = songContainer.querySelectorAll('.modal-song-container')
+
+    elementsToClear.forEach( element => {
+        element.remove()
+    })
 
     for (const songIdx of playlist.songs) {
         console.log(songIdx)
         const el = createSongElement(songIdx)
+        songContainer.appendChild(el)
     }
-
 }
 
 // Creates a song element from the playlist opened by modal
 const createSongElement = (songIdx) => {
     const song = songs[songIdx]
-    const songImg = document.querySelector(".modal-song-img")
-    const songTitle = document.querySelector("#modal-song-title")
-    const songArtist = document.querySelector("#modal-song-artist")
-    const songAlbum = document.querySelector("#modal-song-album")
-    const songTime = document.querySelector("#modal-song-time")
-    songImg.src = song.songImg
-    songTitle.textContent = song.songTitle
-    songArtist.textContent = song.songArtist
-    songAlbum.textContent = song.songAlbum
-    songTime.textContent = song.songTime
+    // songImg.src = song.songImg
+    // songTitle.textContent = song.songTitle
+    // songArtist.textContent = song.songArtist
+    // songAlbum.textContent = song.songAlbum
+    // songTime.textContent = song.songTime
+    const songEl = document.createElement("article")
+    songEl.className = "modal-song-container"
+    songEl.innerHTML = `
+        <img class="modal-song-img" src="${song.songImg}" alt="">
+        <section id="modal-song-content">
+            <h4 id="modal-song-title" class="no-mg">${song.songTitle}</h4>
+            <p id="modal-song-artist" class="no-mg txt-14" >${song.songArtist}</p>
+            <p id="modal-song-album" class="no-mg txt-14">${song.songALbum}</p>
+        </section>
+        <h4 id="modal-song-time">${song.songTime}</h4>
+    `
+    return songEl
+
 
 }
 
@@ -85,21 +132,25 @@ const openModal = () => {
     const modal = document.querySelector(".modal")
     const span = document.querySelector(".close")
     modal.style.display = "flex"
+
+    const shuffle = document.querySelector("#shuffle-button")
     span.onclick = () => {
-    modal.style.display = "none";
+        modal.style.display = "none";
+        shuffle.removeEventListener("click", handleShuffle)
     }
     window.onclick = (event) => {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+        if (event.target == modal) {
+            modal.style.display = "none";
+            shuffle.removeEventListener("click", handleShuffle)
+        }
     }
 }
 
-const createHeart = (playlistID, likes) => {
-    const heartEl = document.querySelector(`#heart${playlistID}`)
-    const likesEl = document.querySelector(`#heart-text${playlistID}`)
+const createHeart = (playlist) => {
+    const heartEl = document.querySelector(`#heart${playlist.playlistID}`)
+    const likesEl = document.querySelector(`#heart-text${playlist.playlistID}`)
     let clicked = false
-    let totalLikes = likes
+    let totalLikes = playlist.likes
     heartEl.addEventListener("click", (event) => {
         event.stopPropagation()
         console.log("heart clicked")
@@ -111,6 +162,10 @@ const createHeart = (playlistID, likes) => {
             totalLikes -= 1
         }
         clicked = !clicked
+        playlist = {
+            ...playlist,
+            likes : totalLikes
+        }
         likesEl.textContent = totalLikes
     })
 }

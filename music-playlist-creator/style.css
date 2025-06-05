@@ -1,8 +1,11 @@
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f8f8f8;
+    height: 100%;
+    margin-bottom: 50px;
 }
 
 header {
@@ -16,10 +19,12 @@ header {
     margin-bottom: 20px;
 }
 
+
+
 footer {
     background-color: lightgrey;
     height: 40px;
-    position: relative;
+    position: fixed;
     bottom: 0;
     width: 100%;
     border: 1px solid gray;
@@ -155,8 +160,13 @@ font-variation-settings:
     display: flex;
 }
 
+#shuffle-container {
+    margin: 20px 20px 0px 0px;
+}
+
 .modal-playlist-content {
     margin: 5px 0px 0px 20px;
+    flex-grow: 1;
 }
 
 .modal-song-container {
@@ -165,6 +175,7 @@ font-variation-settings:
     border-radius: 5px;
     display: flex;
     justify-content: flex-start;
+
 }
 
 #modal-song-content {
