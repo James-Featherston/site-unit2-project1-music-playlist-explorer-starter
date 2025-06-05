@@ -7,10 +7,9 @@ const loadAllDOM = () => {
         playlistsList.appendChild(el)
         //Add an event listener for each heart button
         createHeart(playlist)
+        createDelete(playlist)
+        createEdit(playlist)
     }
-
-    const shuffle = document.querySelector("#shuffle-button")
-
 }
 
 // Make sure the DOM content is loaded
@@ -26,11 +25,13 @@ document.addEventListener("DOMContentLoaded", () => {
 const createPlaylistElement = (playlist) => {
     const playlistEl = document.createElement("article")
     playlistEl.className = "playlist-card"
+    playlistEl.id = `playlist-card${playlist.playlistID}`
     playlistEl.innerHTML = `
         <img class="playlist-image" src="${playlist.playlistArt}" alt="">
         <h4 style="margin:0px">${playlist.playlistName}</h4>
         <p style="margin:4px">${playlist.playlistAuthor}</p>
         <div class="like-function">
+            <button id="edit${playlist.playlistID}" class="edit"> Edit </button>
             <button id="heart" class="heart">
                 <i id="heart${playlist.playlistID}"class="material-symbols-outlined">
                     favorite
@@ -39,6 +40,7 @@ const createPlaylistElement = (playlist) => {
             <div id="heart-text-container">
                 <p id="heart-text${playlist.playlistID}" class="heart-text">${playlist.likes}</p>
             </div>
+            <button id="delete${playlist.playlistID}" class="delete"> Delete </button>
         </div>
     `
     // Add modal event listener to each playlist element
@@ -118,7 +120,7 @@ const createSongElement = (songIdx) => {
         <section id="modal-song-content">
             <h4 id="modal-song-title" class="no-mg">${song.songTitle}</h4>
             <p id="modal-song-artist" class="no-mg txt-14" >${song.songArtist}</p>
-            <p id="modal-song-album" class="no-mg txt-14">${song.songALbum}</p>
+            <p id="modal-song-album" class="no-mg txt-14">${song.songAlbum}</p>
         </section>
         <h4 id="modal-song-time">${song.songTime}</h4>
     `
@@ -153,7 +155,6 @@ const createHeart = (playlist) => {
     let totalLikes = playlist.likes
     heartEl.addEventListener("click", (event) => {
         event.stopPropagation()
-        console.log("heart clicked")
         if (!clicked) {
             heartEl.style["-webkit-text-fill-color"] = "red"    
             totalLikes += 1
@@ -168,4 +169,26 @@ const createHeart = (playlist) => {
         }
         likesEl.textContent = totalLikes
     })
+}
+
+const createDelete = (playlist) => {
+    console.log("Adding delete event listener")
+    const deletebtn = document.querySelector(`#delete${playlist.playlistID}`)
+    deletebtn.addEventListener("click", (event) => {
+        event.stopPropagation()
+        while (i != data.length) {
+        if (data[i] === playlist) {
+            console.log("Found playlist")
+            data.splice(i, 1)
+            let playlistEl = document.querySelector(`#playlist-card${playlist.playlistID}`)
+            playlistEl.remove()
+            break
+        }
+    }
+    })
+    let i = 0
+}
+
+const createEdit = (playlist) => {
+    console.log("Adding create event listener")
 }

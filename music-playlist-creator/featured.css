@@ -1,0 +1,27 @@
+#featured-card {
+    display: flex;
+    width: 80%;
+    margin: 5% 0px 0px 0px;
+    height: 80%;
+    justify-content: flex-start;
+}
+
+#featured-playlist-img {
+    margin-top: 10px;
+    width: 450px;
+    border-radius: 10px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#featured-song-card {
+    flex-grow: 1;
+    margin: 0px 20px 0px 20px;
+    overflow-y: auto;
+    height: 100%;
+}
+
