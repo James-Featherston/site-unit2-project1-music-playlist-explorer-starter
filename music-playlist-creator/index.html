@@ -8,6 +8,8 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite" />
+
 </head>
 <body>
     <header>
@@ -22,36 +24,46 @@
 
     <main> 
         <section id="playlist-cards">
-            <article class="playlist-card">
+            <!-- <article class="playlist-card">
                 <img class="playlist-image" src="assets/img/playlist.png" alt="">
-                <h4>Playlist Title</h4>
-                <p>Creator Name</p>
-            </article>
-            <article class="playlist-card">
-                <img class="playlist-image" src="assets/img/playlist.png" alt="">
-                <h4>Playlist Title</h4>
-                <p>Creator Name</p>
-            </article>
-            <article class="playlist-card">
-                <img class="playlist-image" src="assets/img/playlist.png" alt="">
-                <h4>Playlist Title</h4>
-                <p>Creator Name</p>
-            </article>
-            <article class="playlist-card">
-                <img class="playlist-image" src="assets/img/playlist.png" alt="">
-                <h4>Playlist Title</h4>
-                <p>Creator Name</p>
-            </article>
-            <article class="playlist-card">
-                <img class="playlist-image" src="assets/img/playlist.png" alt="">
-                <h4>Playlist Title</h4>
-                <p>Creator Name</p>
-            </article>
-            <article class="playlist-card">
-                <img class="playlist-image" src="assets/img/playlist.png" alt="">
-                <h4>Playlist Title</h4>
-                <p>Creator Name</p>
-            </article>
+                <h4 style="margin:0px">Playlist Title</h4>
+                <p style="margin:4px">Creator Name</p>
+                <div class="like-function">
+                    <button class="heart">
+                        <i class="material-symbols-outlined">
+                            favorite
+                        </i>
+                    </button>
+                    <div id="heart-text-container">
+                        <p id="heart-text">THIS IS SO COOL</p>
+                    </div>
+                </div>
+            </article> -->
+        </section>
+        <section class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-rect">
+                    <div id="modal-rect2">
+                        <article class="modal-playlist">
+                            <img id="modal-playlist-image" src="assets/img/playlist.png" alt="">
+                            <div class="modal-playlist-content">
+                                <h1 id="modal-playlist-title" style="color:gray">Playlist Title</h1>
+                                <h5 id="modal-playlist-creator" style="color:gray">Creator Name</h5>
+                            </div>
+                        </article>
+                        <article class="modal-song-container">
+                            <img class="modal-song-img" src="assets/img/song.png" alt="">
+                            <section id="modal-song-content">
+                                <h4 id="modal-song-title" class="no-mg">Song Title</h4>
+                                <p id="modal-song-artist" class="no-mg txt-14" >Artist Name</p>
+                                <p id="modal-song-album" class="no-mg txt-14">Album Name</p>
+                            </section>
+                            <h4 id="modal-song-time">0.00</h4>
+                        </article>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -59,6 +71,7 @@
         
     </footer>
     <script src="data/data.js"></script>
+    <script src="data/songs.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
