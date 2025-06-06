@@ -6,7 +6,7 @@ let data = [
         "playlistName": "Gaming",
         "playlistAuthor": "Albert",
         "playlistArt": "./assets/img/img1.jpg",
-        "likes": 5,
+        "likes": 15,
         "songs" : [0, 1, 3, 4]
     },
     {
@@ -14,7 +14,7 @@ let data = [
         "playlistName": "Working",
         "playlistAuthor": "Bryan",
         "playlistArt": "./assets/img/img2.jpg",
-        "likes": 5,
+        "likes": 47,
         "songs" : [2, 0, 5, 4]
     },
     {
@@ -22,7 +22,7 @@ let data = [
         "playlistName": "Outdoors",
         "playlistAuthor": "Carter",
         "playlistArt": "./assets/img/img3.jpg",
-        "likes": 5,
+        "likes": 102,
         "songs" : [1, 4, 2, 5]
     },
     {
@@ -30,7 +30,7 @@ let data = [
         "playlistName": "Reading",
         "playlistAuthor": "Damian",
         "playlistArt": "./assets/img/img4.jpg",
-        "likes": 5,
+        "likes": 32,
         "songs" : [0, 3, 2, 4]
     },
     {
@@ -38,7 +38,7 @@ let data = [
         "playlistName": "Driving",
         "playlistAuthor": "Eliza",
         "playlistArt": "./assets/img/img5.jpg",
-        "likes": 5,
+        "likes": 45,
         "songs" : [4, 1, 5, 3]
     },
     {
@@ -46,7 +46,7 @@ let data = [
         "playlistName": "Mountains",
         "playlistAuthor": "Frank",
         "playlistArt": "./assets/img/img6.jpg",
-        "likes": 5,
+        "likes": 18,
         "songs" : [2, 1, 0, 3]
     },
     {
@@ -54,7 +54,7 @@ let data = [
         "playlistName": "Plants",
         "playlistAuthor": "Greg",
         "playlistArt": "./assets/img/img7.jpg",
-        "likes": 5,
+        "likes": 26,
         "songs" : [5, 4, 1, 2]
     },
     {
@@ -62,7 +62,7 @@ let data = [
         "playlistName": "Ocean",
         "playlistAuthor": "Hillary",
         "playlistArt": "./assets/img/img8.jpg",
-        "likes": 5,
+        "likes": 89,
         "songs" : [2, 0, 5, 3]
     },
 ]

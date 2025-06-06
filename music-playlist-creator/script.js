@@ -394,7 +394,27 @@ const setupSearchBar = () => {
 }
 
 const setupSorting = () => {
-    
+    const name = document.querySelector("#sort-by-name")
+    const likes = document.querySelector("#sort-by-likes")
+    const date = document.querySelector("#sort-by-date")
+
+    name.addEventListener("click", () => {
+        let sortedData = null
+        sortedData = sortByName()
+        console.log(sortedData)
+        displayPlaylists(sortedData)
+    })
+    likes.addEventListener("click", () => {
+        let sortedData = null
+        sortedData = sortByLikes()
+        displayPlaylists(sortedData)
+    })
+    date.addEventListener("click", () => {
+        let sortedData = null
+        sortedData = sortByDate()
+        displayPlaylists(sortedData)
+    })
+
 }
 
 const searchData = (target) => {
@@ -411,3 +431,16 @@ const searchData = (target) => {
     }
     return res
 }
+
+const sortByName = () => {
+    return data.sort((a, b) => a.playlistName.localeCompare(b.playlistName))
+}
+
+const sortByLikes = () => {
+    return data.sort((a, b) => b.likes - a.likes)
+}
+
+const sortByDate = () => {
+    return data.sort((a, b) => b.playlistID - a.playlistID)
+}
+
