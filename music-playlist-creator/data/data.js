@@ -1,6 +1,4 @@
-// https://picsum.photos/270/230
-
-let data = [
+const data = [
     {
         "playlistID": 1,
         "playlistName": "Gaming",
@@ -71,6 +69,24 @@ let data = [
         "playlistArt": "./assets/img/img8.jpg",
         "likes": 89,
         "songs" : [2, 0, 5, 3],
+        "liked" : false
+    },
+    {
+        "playlistID": 9,
+        "playlistName": "Indigo",
+        "playlistAuthor": "Greg",
+        "playlistArt": "./assets/img/img9.jpg",
+        "likes": 63,
+        "songs" : [2, 5, 3, 1],
+        "liked" : false
+    },
+    {
+        "playlistID": 10,
+        "playlistName": "Backseat Driver",
+        "playlistAuthor": "Alex",
+        "playlistArt": "./assets/img/img10.jpg",
+        "likes": 103,
+        "songs" : [5, 0, 3, 2],
         "liked" : false
     },
 ]

@@ -1,5 +1,10 @@
-// Load playlists
 
+/* Entry point into the program and ensures the DOM content is loaded */
+document.addEventListener("DOMContentLoaded", () => {
+    loadAllDOM()
+})
+
+/* Loads necessary event listeners and other necessary setup */
 const loadAllDOM = () => {
     displayPlaylists(data)
     createPlaylist()
@@ -8,20 +13,18 @@ const loadAllDOM = () => {
     setupAddSong()
 }
 
-// Make sure the DOM content is loaded
-// Call the load playlists method
-document.addEventListener("DOMContentLoaded", () => {
-    loadAllDOM()
-})
-
-
+/* 
+Displays the playlist and configures the buttons
+Input: Playlist array
+Result: Displays the playlists in the order they appear in the array
+*/
 const displayPlaylists = (arr) => {
     let playlistsList = document.querySelector("#playlist-cards")
     playlistsList.innerHTML=''
     for (const playlist of arr) {
         const el = createPlaylistElement(playlist)
         playlistsList.appendChild(el)
-        //Add an event listener for each heart button
+        //Add an event listener for each button
         createHeart(playlist.playlistID)
         createDelete(playlist.playlistID)
         createEdit(playlist)
@@ -30,9 +33,11 @@ const displayPlaylists = (arr) => {
 
 
 
-// Create a playlist element and return it
-
-
+/* 
+Creates a playlist element based on the input object 
+Input: Playlist object
+Output: Playlist element
+*/
 const createPlaylistElement = (playlist) => {
     const playlistEl = document.createElement("article")
     playlistEl.className = "playlist-card"
@@ -63,9 +68,14 @@ const createPlaylistElement = (playlist) => {
     return playlistEl
 }
 
-// Create a function to update the modal
+/* 
+Updates the modal display
+Input: The playlist id that is opening the modal
+Result: The shared modal element now has the content of input playlistID
+*/
 const updateModalDisplay = (playlistID) => {
 
+    // Updates the playlist information in the modal
     let playlist = getPlaylistWithID(playlistID)
     const playlistImgEl = document.querySelector("#modal-playlist-image")
     const playlistTitleEl = document.querySelector("#modal-playlist-title")
@@ -74,24 +84,25 @@ const updateModalDisplay = (playlistID) => {
     playlistCreatorEl.textContent = playlist.playlistAuthor
     playlistImgEl.src = playlist.playlistArt
 
+    // Changes the songs within the modal
     updateSongs(playlist)
+
+    // Creates shuffle event listener and removes old one
     const shuffle = document.querySelector("#shuffle-button")
     const parent = document.querySelector("#shuffle-container")
     const clone = shuffle.cloneNode(true)
     parent.replaceChild(clone, shuffle)
     const newShuffle = document.querySelector("#shuffle-button")
-    newShuffle.addEventListener("click", function (event) {
-        handleShuffle(playlist, event)
+    newShuffle.addEventListener("click", (event) => {
+        event.stopPropagation()
+        shuffleSongs(playlist)
     })
 }
 
-const handleShuffleClicker = null
-
-const handleShuffle = (playlist, event) => {
-    event.stopPropagation()
-    shuffleSongs(playlist)
-}
-
+/* 
+Input: Playlist object
+Result: The songs within the playlist are shuffled
+*/
 const shuffleSongs = (playlist) => {
     const songs = playlist.songs
     for (let i = songs.length - 1; i > 0; i--) {
@@ -103,6 +114,10 @@ const shuffleSongs = (playlist) => {
     updateSongs(playlist)
 }
 
+/*
+Input: The playlist with the target songs
+Result: Rerenders the modal such that the songs are in the order they appear in the playlist
+*/
 const updateSongs = (playlist) => {
     let songContainer = document.querySelector("#modal-rect2")
     const elementsToClear = songContainer.querySelectorAll('.modal-song-container')
@@ -117,7 +132,10 @@ const updateSongs = (playlist) => {
     }
 }
 
-// Creates a song element from the playlist opened by modal
+/*
+Input: The index of the song appears in the songs array
+Output: A song element with the content of the desired song
+*/
 const createSongElement = (songIdx) => {
     const song = songs[songIdx]
     const songEl = document.createElement("article")
@@ -136,7 +154,9 @@ const createSongElement = (songIdx) => {
 
 }
 
-// Function to open the modal on click
+/*
+Opens modal and sets up event listeners to close the modal
+*/
 const openModal = () => {
     const modal = document.querySelector(".modal")
     const span = document.querySelector(".close")
@@ -155,6 +175,11 @@ const openModal = () => {
     }
 }
 
+/*
+Input: Playlist ID
+Result: Adds the heart event listeners to the playlist element with the input id
+and updates the like counts on screen and the playlist data array.
+*/
 const createHeart = (id) => {
     const heartEl = document.querySelector(`#heart${id}`)
     const likesEl = document.querySelector(`#heart-text${id}`)
@@ -186,6 +211,11 @@ const createHeart = (id) => {
     })
 }
 
+/* 
+Input: Playlist ID
+Result: Creates an event listener that, when triggered, removes the target 
+playlist from the display and playlist data array.
+*/
 const createDelete = (id) => {
     const deletebtn = document.querySelector(`#delete${id}`)
     deletebtn.addEventListener("click", (event) => {
@@ -204,6 +234,12 @@ const createDelete = (id) => {
     })
 }
 
+
+/*
+Input: Playlist Object
+Result: Creates an event listener that, when triggered, opens up the edit modal 
+and creates the submit modal for the form
+*/
 const createEdit = (playlist) => {
     const modal = document.querySelector("#modify-modal")
     const editbtn = document.querySelector(`#edit${playlist.playlistID}`)
@@ -237,6 +273,10 @@ const createEdit = (playlist) => {
     })
 }
 
+/*
+Creates an event listener that, when triggered, allows opens up the 
+create playlist modal and sets up the submission modal
+*/
 const createPlaylist = () => {
     const modal = document.querySelector("#modify-modal")
     const playlistbtn = document.querySelector("#create-btn")
@@ -271,7 +311,10 @@ const createPlaylist = () => {
     })
 }
 
-
+/* 
+Input: Playlist ID
+Result: Fills the form based on if it is an editing form or a create form. 
+*/
 const setupForm = (id) => {
     let playlist = getPlaylistWithID(id)
     const playlistAuthor = document.querySelector("#playlist-author")
@@ -282,12 +325,12 @@ const setupForm = (id) => {
 
         playlistAuthor.value = playlist.playlistAuthor
         playlistName.value = playlist.playlistName
-        playlistURL.value = playlist.playlistArt
+        playlistURL.value = playlist.playlistArtrcfkkvlbttkrvujncvelufthkibtdcrk
         formTitle.textContent = "Edit Existing Playlist"
     } else {
         playlistAuthor.value = ""
         playlistName.value = ""
-        playlistURL.value = "assets/img/playlist.png"
+        playlistURL.value = "https://picsum.photos/270/230"
         formTitle.textContent = "Create New Playlist"
     }
     const form = document.querySelector("#add-songs")
@@ -300,7 +343,6 @@ const setupForm = (id) => {
         if (playlist !== null & playlist?.songs.includes(song.songID)) {
             songOption.checked = true
         }
-        // songOption.checked()
         const label = document.createElement("label")
         label.id = `label${song.songID}`
         label.textContent = `${song.songTitle}  by ${song.songArtist}`
@@ -310,6 +352,12 @@ const setupForm = (id) => {
     })
 }
 
+
+/* 
+Input: Playlist object
+Result: Captures the data from the input form and updates the underlying arrays
+and rerenders the playlist elements.
+*/
 const handlePlaylistSubmit = (playlist) => {
     const playlistAuthor = document.querySelector("#playlist-author")
         const playlistName = document.querySelector("#playlist-name")
@@ -351,6 +399,10 @@ const handlePlaylistSubmit = (playlist) => {
     }
 }
 
+/* 
+Input: Playlist ID
+Updates the desired playlist card
+*/
 const updatePlaylistCard = (id) => {
     playlist = getPlaylistWithID(id)
     let playlistCard = document.querySelector(`#playlist-card${id}`)
@@ -365,6 +417,12 @@ const updatePlaylistCard = (id) => {
     playlistArt.textContent = playlist.playlistArt
 }
 
+/* 
+Input: Playlist ID
+Output: Index of the playlist within the data array
+Linear searches for the index of the playlist within the data array 
+(Array may not be sorted)
+*/
 const findIndex = (id) => {
     let i = 0
     for (let el of data) {
@@ -374,6 +432,11 @@ const findIndex = (id) => {
         i += 1
     }
 }
+
+/*
+Input: Playlist ID
+Output: The playlist if it exists
+*/
 const getPlaylistWithID = (id) => {
     for (let el of data) {
         if (el.playlistID === id) {
@@ -383,6 +446,9 @@ const getPlaylistWithID = (id) => {
     return null
 }
 
+/*
+Sets up the event listeners and logic for the search bar
+*/
 const setupSearchBar = () => {
     //create event listener
     const form = document.querySelector("#search-bar")
@@ -401,6 +467,9 @@ const setupSearchBar = () => {
     })
 }
 
+/*
+Sets up the event listeners and logic for the sort buttons
+*/
 const setupSorting = () => {
     const name = document.querySelector("#sort-by-name")
     const likes = document.querySelector("#sort-by-likes")
@@ -425,6 +494,10 @@ const setupSorting = () => {
 
 }
 
+/*
+Input: The substring to be searched for
+Output: A list of playlists that contain the desired substring 
+*/
 const searchData = (target) => {
     target = target.toLowerCase()
     const res = []
@@ -440,19 +513,32 @@ const searchData = (target) => {
     return res
 }
 
+/*
+Output: The playlist array sorted by name
+*/
 const sortByName = () => {
     return data.sort((a, b) => a.playlistName.localeCompare(b.playlistName))
 }
 
+/*
+Output: The playlist array sorted by likes
+*/
 const sortByLikes = () => {
     return data.sort((a, b) => b.likes - a.likes)
 }
 
+/*
+Output: The playlist array sorted by date added
+*/
 const sortByDate = () => {
     return data.sort((a, b) => b.playlistID - a.playlistID)
 }
 
 
+/*
+Adds event listeners for creating a song and adds the song to the underlying
+songs array after submission.
+*/
 const setupAddSong = () => {
     const modal = document.querySelector("#add-song-modal")
     const songBtn = document.querySelector("#create-song-btn")
@@ -489,7 +575,7 @@ const setupAddSong = () => {
                 "songTitle" : nameVal,
                 "songArtist" : authorVal,
                 "songAlbum" : "Unknown",
-                "songImg" : "./assets/img/song.png",
+                "songImg" : "https://picsum.photos/270/230",
                 "songTime" : "0:00",
             }
             songs.push(newSong)

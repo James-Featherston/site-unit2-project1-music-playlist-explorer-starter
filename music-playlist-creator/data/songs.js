@@ -37,7 +37,7 @@ let songs = [
         "songArtist" : "Post Malone",
         "songAlbum" : "Trucks and Hunting",
         "songImg" : "./assets/img/img5.jpg",
-        "songTime" : "0:00",
+        "songTime" : "2:17",
     },
     {
         "songID" : 6,

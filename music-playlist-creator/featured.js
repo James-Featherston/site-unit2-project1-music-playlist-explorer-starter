@@ -1,5 +1,13 @@
-// Load playlists
+/*
+Loads the DOM and entry into program
+*/
+document.addEventListener("DOMContentLoaded", () => {
+    loadAllDOM()
+})
 
+/*
+Randomly selects a playlist and calls the necessary functions to display it
+*/
 const loadAllDOM = () => {
     let playlistIdx = Math.floor(Math.random() * (data.length))
     console.log(playlistIdx)
@@ -8,12 +16,10 @@ const loadAllDOM = () => {
     getSongs(playlist)
 }
 
-// Make sure the DOM content is loaded
-// Call the load playlists method
-document.addEventListener("DOMContentLoaded", () => {
-    loadAllDOM()
-})
-
+/*
+Input: Playlist Object
+Result: The playlist display contains the correct information
+*/
 const setUpPlaylist = (playlist) => {
     const playlistImgEl = document.querySelector("#featured-playlist-img")
     const playlistTitleEl = document.querySelector("#featured-playlist-title")
@@ -23,6 +29,10 @@ const setUpPlaylist = (playlist) => {
     playlistImgEl.src = playlist.playlistArt
 }
 
+/*
+Input: Playlist Object
+Result: Removes old songs and adds the new ones for the specific playlist
+*/
 const getSongs = (playlist) => {
     let songContainer = document.querySelector("#featured-song-card")
     const elementsToClear = songContainer.querySelectorAll('.modal-song-container')
@@ -32,12 +42,15 @@ const getSongs = (playlist) => {
     })
 
     for (const songIdx of playlist.songs) {
-        console.log(songIdx)
         const el = createSongElement(songIdx)
         songContainer.appendChild(el)
     }
 }
 
+/*
+Input: Song index in songs array
+Output: A song element
+*/
 const createSongElement = (songIdx) => {
     const song = songs[songIdx]
     const songEl = document.createElement("article")
