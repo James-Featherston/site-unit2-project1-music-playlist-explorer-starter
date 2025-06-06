@@ -19,7 +19,7 @@
                     Music Playlist Explorer
                 </li>
                 <li>
-                    <a href="modify.html" style="margin-right: 30px;">Create Playlist</a>
+                    <button id="create-btn">Create Playlist</button>
                     <a href="featured.html" style="margin-right: 30px;">Featured</a>
                 </li>
             </ol>
@@ -68,6 +68,29 @@
                             </section>
                             <h4 id="modal-song-time">0.00</h4> -->
                         <!-- </article> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="modify-modal" class="modal">
+            <div class="modal-content">
+                <span class="close1">&times;</span>
+                <div id="modal-rect">
+                    <div id="modal-rect3">
+                        <form id="review-form">
+                            <h2 id="title">Create New Playlist</h2>
+                            <label for="playlist-name">Name:</label>
+                            <input type="text" id="playlist-name" name="playlist-name">
+                            <label for="playlist-author">Author:</label>
+                            <input type="text" id="playlist-author" name="playlist-author">
+                            <label for="playlist-URL">Input URL:</label>
+                            <input type="text" id="playlist-URL" name="playlist-URL">
+                            <label for="add-songs">Add/ Remove Songs</label>
+                            <fieldset id="add-songs" name="Songs">
+                                <!-- Insert Songs -->
+                            </fieldset>
+                            <button type="submit">Post Review</button>
+                        </form>
                     </div>
                 </div>
             </div>

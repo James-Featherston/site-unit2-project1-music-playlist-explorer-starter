@@ -45,6 +45,8 @@ footer {
     max-width: 90%;
     margin: 12px;
     align-self: center;
+    width: 270px;
+    height: 230px;
 }
 #playlist-cards {
     display: grid;
@@ -133,6 +135,7 @@ font-variation-settings:
     height: 60%;
     border-radius: 10px;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .close {
@@ -144,11 +147,26 @@ font-variation-settings:
     top: 10px;
     right: 16px;
 }
+
+.close1 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 16px;
+}
+
 .close:hover,
 .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#modify-modal {
+    display: none;
 }
 
 #modal-rect {
@@ -157,11 +175,34 @@ font-variation-settings:
     display: flex;
     justify-content: center;
 }
+#modal-rect4 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 #modal-rect2 {
     height: 100%;
     width: 80%;
     overflow-y: auto;
 }
+
+#modal-rect3 {
+    height: 100%;
+    width: 80%;
+    overflow-y: auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+} 
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
 
 #modal-playlist-image {
     width: 30%;
@@ -225,4 +266,14 @@ font-variation-settings:
 
 .delete {
     margin-left: 15px;
+}
+
+fieldset {
+    height: 200px;
+    overflow: auto;
+    margin: 8px;
+}
+
+input {
+    margin: 8px;
 }
