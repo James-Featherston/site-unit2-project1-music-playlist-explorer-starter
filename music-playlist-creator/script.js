@@ -85,7 +85,7 @@ const updateModalDisplay = (playlistID) => {
     playlistImgEl.src = playlist.playlistArt
 
     // Changes the songs within the modal
-    updateSongs(playlist)
+    updateSongs(playlistID)
 
     // Creates shuffle event listener and removes old one
     const shuffle = document.querySelector("#shuffle-button")
@@ -95,7 +95,7 @@ const updateModalDisplay = (playlistID) => {
     const newShuffle = document.querySelector("#shuffle-button")
     newShuffle.addEventListener("click", (event) => {
         event.stopPropagation()
-        shuffleSongs(playlist)
+        shuffleSongs(playlistID)
     })
 }
 
@@ -103,7 +103,8 @@ const updateModalDisplay = (playlistID) => {
 Input: Playlist object
 Result: The songs within the playlist are shuffled
 */
-const shuffleSongs = (playlist) => {
+const shuffleSongs = (playlistID) => {
+    const playlist = getPlaylistWithID(playlistID)
     const songs = playlist.songs
     for (let i = songs.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1))
@@ -111,14 +112,15 @@ const shuffleSongs = (playlist) => {
         songs[i] = songs[j]
         songs[j] = temp
     }
-    updateSongs(playlist)
+    updateSongs(playlistID)
 }
 
 /*
 Input: The playlist with the target songs
 Result: Rerenders the modal such that the songs are in the order they appear in the playlist
 */
-const updateSongs = (playlist) => {
+const updateSongs = (playlistID) => {
+    const playlist = getPlaylistWithID(playlistID)
     let songContainer = document.querySelector("#modal-rect2")
     const elementsToClear = songContainer.querySelectorAll('.modal-song-container')
 
@@ -323,7 +325,7 @@ const setupForm = (id) => {
 
         playlistAuthor.value = playlist.playlistAuthor
         playlistName.value = playlist.playlistName
-        playlistURL.value = playlist.playlistArtrcfkkvlbttkrvujncvelufthkibtdcrk
+        playlistURL.value = playlist.playlistArt
         formTitle.textContent = "Edit Existing Playlist"
     } else {
         playlistAuthor.value = ""
@@ -338,7 +340,7 @@ const setupForm = (id) => {
         const songOption = document.createElement("input")
         songOption.type = "checkbox"
         songOption.value = song.songID
-        if (playlist !== null & playlist?.songs.includes(song.songID)) {
+        if (playlist !== null & playlist?.songs.includes(song.songID - 1)) {
             songOption.checked = true
         }
         const label = document.createElement("label")
@@ -451,6 +453,7 @@ const setupSearchBar = () => {
     //create event listener
     const form = document.querySelector("#search-bar")
     const clearBtn = document.querySelector('#clear-btn');
+    const refreshBtn = document.querySelector('#refresh-screen');
     form.addEventListener("submit", (event) => {
         //receive input
         event.preventDefault()
@@ -463,6 +466,13 @@ const setupSearchBar = () => {
         const inputEl = document.querySelector("#search-input")
         inputEl.value = ""
     })
+    refreshBtn.addEventListener("click", () => {
+        displayPlaylists(data)
+        const inputEl = document.querySelector("#search-input")
+        inputEl.value = ""
+    })
+
+
 }
 
 /*
@@ -568,7 +578,7 @@ const setupAddSong = () => {
             let authorVal = author.value
 
             newSong = {
-                "songID" : songs.length,
+                "songID" : songs.length + 1,
                 "songTitle" : nameVal,
                 "songArtist" : authorVal,
                 "songAlbum" : "Unknown",
