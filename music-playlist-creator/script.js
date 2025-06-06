@@ -1,16 +1,11 @@
 // Load playlists
 
 const loadAllDOM = () => {
-    let playlistsList = document.querySelector("#playlist-cards")
-    for (const playlist of data) {
-        const el = createPlaylistElement(playlist)
-        playlistsList.appendChild(el)
-        //Add an event listener for each heart button
-        createHeart(playlist.playlistID)
-        createDelete(playlist.playlistID)
-        createEdit(playlist)
-    }
+    displayPlaylists(data)
     createPlaylist()
+    setupSearchBar()
+    setupSorting()
+
 }
 
 // Make sure the DOM content is loaded
@@ -18,6 +13,21 @@ const loadAllDOM = () => {
 document.addEventListener("DOMContentLoaded", () => {
     loadAllDOM()
 })
+
+
+const displayPlaylists = (arr) => {
+    let playlistsList = document.querySelector("#playlist-cards")
+    playlistsList.innerHTML=''
+    for (const playlist of arr) {
+        const el = createPlaylistElement(playlist)
+        playlistsList.appendChild(el)
+        //Add an event listener for each heart button
+        createHeart(playlist.playlistID)
+        createDelete(playlist.playlistID)
+        createEdit(playlist)
+    }
+}
+
 
 
 // Create a playlist element and return it
@@ -367,4 +377,37 @@ const getPlaylistWithID = (id) => {
         }
     }
     return null
+}
+
+const setupSearchBar = () => {
+    //create event listener
+    const form = document.querySelector("#search-bar")
+    form.addEventListener("submit", (event) => {
+        //receive input
+        event.preventDefault()
+        const inputEl = document.querySelector("#search-input")
+        const input = inputEl.value
+        let filteredData = searchData(input)
+        displayPlaylists(filteredData)
+
+    })
+}
+
+const setupSorting = () => {
+    
+}
+
+const searchData = (target) => {
+    target = target.toLowerCase()
+    const res = []
+    for (const playlist of data) {
+        let name = playlist.playlistName
+        let author = playlist.playlistAuthor
+        name = name.toLowerCase()
+        author = author.toLowerCase()
+        if (name.includes(target) || author.includes(target)) {
+            res.push(playlist)
+        }
+    }
+    return res
 }
