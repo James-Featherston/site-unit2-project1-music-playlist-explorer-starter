@@ -165,12 +165,10 @@ const openModal = () => {
     const shuffle = document.querySelector("#shuffle-button")
     span.onclick = () => {
         modal.style.display = "none";
-        shuffle.removeEventListener("click", handleShuffle)
     }
     window.onclick = (event) => {
         if (event.target == modal) {
             modal.style.display = "none";
-            shuffle.removeEventListener("click", handleShuffle)
         }
     }
 }
@@ -369,7 +367,7 @@ const handlePlaylistSubmit = (playlist) => {
         const songs = []
         for (let song of playlistSongs) {
             if (song.checked){
-                songs.push(song.value)
+                songs.push(song.value - 1)
             }
         }
     if (playlist === null) {
@@ -488,7 +486,6 @@ const setupSorting = () => {
     date.addEventListener("click", () => {
         let sortedData = null
         sortedData = sortByDate()
-        console.log(sortedData)
         displayPlaylists(sortedData)
     })
 
