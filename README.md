@@ -140,20 +140,22 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site]([ht
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+I feel the topics in the labs prepared me well to complete the assignment. I felt a little less time could have been spent on HMTL/CSS and more on javascript event listeners.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time I would spend more time working on the UI. My songs array and playlists array are indexed differently, so I would make them both 0 indexed to prevent confusion. I would also try to make the rerendering more efficient so that I am not rerendering things that do not need to be refreshed.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+The project demo went well, I was able to show all the features and they're functionality.
 
 ### Open-source libraries used
 
 - Add any links to open-source libraries used in your project.
+- N/A
 
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shoutout to Erika for giving really good lessons. Shoutout to all of the instructors for being very helpful me. Shoutout my table for being helpful.
