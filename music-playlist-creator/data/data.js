@@ -7,7 +7,8 @@ let data = [
         "playlistAuthor": "Albert",
         "playlistArt": "./assets/img/img1.jpg",
         "likes": 15,
-        "songs" : [0, 1, 3, 4]
+        "songs" : [0, 1, 3, 4],
+        "liked" : true
     },
     {
         "playlistID": 2,
@@ -15,7 +16,8 @@ let data = [
         "playlistAuthor": "Bryan",
         "playlistArt": "./assets/img/img2.jpg",
         "likes": 47,
-        "songs" : [2, 0, 5, 4]
+        "songs" : [2, 0, 5, 4],
+        "liked" : false
     },
     {
         "playlistID": 3,
@@ -23,7 +25,8 @@ let data = [
         "playlistAuthor": "Carter",
         "playlistArt": "./assets/img/img3.jpg",
         "likes": 102,
-        "songs" : [1, 4, 2, 5]
+        "songs" : [1, 4, 2, 5],
+        "liked" : false
     },
     {
         "playlistID": 4,
@@ -31,7 +34,8 @@ let data = [
         "playlistAuthor": "Damian",
         "playlistArt": "./assets/img/img4.jpg",
         "likes": 32,
-        "songs" : [0, 3, 2, 4]
+        "songs" : [0, 3, 2, 4],
+        "liked" : false
     },
     {
         "playlistID": 5,
@@ -39,7 +43,8 @@ let data = [
         "playlistAuthor": "Eliza",
         "playlistArt": "./assets/img/img5.jpg",
         "likes": 45,
-        "songs" : [4, 1, 5, 3]
+        "songs" : [4, 1, 5, 3],
+        "liked" : false
     },
     {
         "playlistID": 6,
@@ -47,7 +52,8 @@ let data = [
         "playlistAuthor": "Frank",
         "playlistArt": "./assets/img/img6.jpg",
         "likes": 18,
-        "songs" : [2, 1, 0, 3]
+        "songs" : [2, 1, 0, 3],
+        "liked" : true
     },
     {
         "playlistID": 7,
@@ -55,7 +61,8 @@ let data = [
         "playlistAuthor": "Greg",
         "playlistArt": "./assets/img/img7.jpg",
         "likes": 26,
-        "songs" : [5, 4, 1, 2]
+        "songs" : [5, 4, 1, 2],
+        "liked" : false
     },
     {
         "playlistID": 8,
@@ -63,6 +70,7 @@ let data = [
         "playlistAuthor": "Hillary",
         "playlistArt": "./assets/img/img8.jpg",
         "likes": 89,
-        "songs" : [2, 0, 5, 3]
+        "songs" : [2, 0, 5, 3],
+        "liked" : false
     },
 ]

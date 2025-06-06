@@ -20,6 +20,7 @@
                 </li>
                 <li>
                     <button id="create-btn">Create Playlist</button>
+                    <button id="create-song-btn">Create Song</button>
                     <a href="featured.html" style="margin-right: 30px;">Featured</a>
                 </li>
             </ol>
@@ -28,11 +29,12 @@
 
     <main> 
         <section id="search-bar-container">
-            <button id="sort-by-name">Playlist Name</button>
-            <button id="sort-by-likes">Playlist Number of Likes</button>
-            <button id="sort-by-date">Date Added</button>
+            <button id="sort-by-name" class="search-button">Playlist Name</button>
+            <button id="sort-by-likes" class="search-button">Playlist Number of Likes</button>
+            <button id="sort-by-date" class="search-button">Date Added</button>
             <form id="search-bar">
                 <input type="text" id="search-input" name="search-input" placeholder="Search Something">
+                <span id="clear-btn">x</span>
                 <button type="submit">Search</button>
             </form>
         </section>
@@ -98,7 +100,25 @@
                             <fieldset id="add-songs" name="Songs">
                                 <!-- Insert Songs -->
                             </fieldset>
-                            <button type="submit">Post Review</button>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="add-song-modal" class="modal">
+            <div class="modal-content">
+                <span class="close2">&times;</span>
+                <div id="modal-rect">
+                    <div id="modal-rect4">
+                        <form id="new-song-form">
+                            <h2 id="title">Create New Song</h2>
+                            <label for="song-name">Name:</label>
+                            <input type="text" id="song-name" name="song-namee">
+                            <label for="song-artist">Artist:</label>
+                            <input type="text" id="song-artist" name="song-artist">
+                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>

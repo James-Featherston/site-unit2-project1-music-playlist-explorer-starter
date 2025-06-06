@@ -5,7 +5,7 @@ const loadAllDOM = () => {
     createPlaylist()
     setupSearchBar()
     setupSorting()
-
+    setupAddSong()
 }
 
 // Make sure the DOM content is loaded
@@ -158,25 +158,31 @@ const openModal = () => {
 const createHeart = (id) => {
     const heartEl = document.querySelector(`#heart${id}`)
     const likesEl = document.querySelector(`#heart-text${id}`)
-    let clicked = false
     let playlist = getPlaylistWithID(id)
+    if (playlist.liked) {
+        heartEl.style["-webkit-text-fill-color"] = "red"  
+    }
     let totalLikes = playlist.likes
     heartEl.addEventListener("click", (event) => {
         playlist = getPlaylistWithID(id)
         event.stopPropagation()
-        if (!clicked) {
+        if (!playlist.liked) {
             heartEl.style["-webkit-text-fill-color"] = "red"    
             totalLikes += 1
         } else {
             heartEl.style["-webkit-text-fill-color"] = "white"
             totalLikes -= 1
         }
-        clicked = !clicked
+        likesEl.textContent = totalLikes
+        playlist.liked = !playlist.liked
         playlist = {
             ...playlist,
-            likes : totalLikes
+            likes : totalLikes,
+
         }
-        likesEl.textContent = totalLikes
+        let playlistIdx = findIndex(id)
+        data [playlistIdx] = playlist
+
     })
 }
 
@@ -226,6 +232,7 @@ const createEdit = (playlist) => {
             event.preventDefault()
             event.stopPropagation()
             handlePlaylistSubmit(playlist)
+            modal.style.display = "none";
         }) 
     })
 }
@@ -259,6 +266,7 @@ const createPlaylist = () => {
             event.preventDefault()
             event.stopPropagation()
             handlePlaylistSubmit(null)
+            modal.style.display = "none";
         }) 
     })
 }
@@ -318,7 +326,7 @@ const handlePlaylistSubmit = (playlist) => {
         }
     if (playlist === null) {
         const newPlaylist = {
-            "playlistID": data.length,
+            "playlistID": data.length + 1,
             "playlistName": name,
             "playlistAuthor": author,
             "playlistArt": url,
@@ -326,12 +334,8 @@ const handlePlaylistSubmit = (playlist) => {
             "songs" : songs
         }
         data.push(newPlaylist)
-        let playlistsList = document.querySelector("#playlist-cards")
-        const el = createPlaylistElement(newPlaylist)
-        playlistsList.appendChild(el)
-        createHeart(newPlaylist.playlistID)
-        createDelete(newPlaylist.playlistID)
-        createEdit(newPlaylist)
+        displayPlaylists(data)
+
 
     } else {
         playlist = {
@@ -382,6 +386,7 @@ const getPlaylistWithID = (id) => {
 const setupSearchBar = () => {
     //create event listener
     const form = document.querySelector("#search-bar")
+    const clearBtn = document.querySelector('#clear-btn');
     form.addEventListener("submit", (event) => {
         //receive input
         event.preventDefault()
@@ -389,7 +394,10 @@ const setupSearchBar = () => {
         const input = inputEl.value
         let filteredData = searchData(input)
         displayPlaylists(filteredData)
-
+    })
+    clearBtn.addEventListener("click", () => {
+        const inputEl = document.querySelector("#search-input")
+        inputEl.value = ""
     })
 }
 
@@ -401,7 +409,6 @@ const setupSorting = () => {
     name.addEventListener("click", () => {
         let sortedData = null
         sortedData = sortByName()
-        console.log(sortedData)
         displayPlaylists(sortedData)
     })
     likes.addEventListener("click", () => {
@@ -412,6 +419,7 @@ const setupSorting = () => {
     date.addEventListener("click", () => {
         let sortedData = null
         sortedData = sortByDate()
+        console.log(sortedData)
         displayPlaylists(sortedData)
     })
 
@@ -443,4 +451,51 @@ const sortByLikes = () => {
 const sortByDate = () => {
     return data.sort((a, b) => b.playlistID - a.playlistID)
 }
+
+
+const setupAddSong = () => {
+    const modal = document.querySelector("#add-song-modal")
+    const songBtn = document.querySelector("#create-song-btn")
+    const span = document.querySelector(".close2")
+    
+    songBtn.addEventListener("click", () => {
+        modal.style.display = "flex"
+
+        span.onclick = () => {
+            modal.style.display = "none";
+        }
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        const submission = document.querySelector("#new-song-form")
+        const parent = document.querySelector("#modal-rect4")
+        const clone = submission.cloneNode(true)
+        parent.replaceChild(clone, submission)
+        const newSubmission = document.querySelector("#new-song-form")
+
+        newSubmission.addEventListener("submit", (event) => {
+            event.preventDefault()
+            modal.style.display = "none";
+            const name = document.querySelector("#song-name")
+            const author = document.querySelector("#song-artist")
+            let nameVal = name.value
+            let authorVal = author.value
+
+            newSong = {
+                "songID" : songs.length,
+                "songTitle" : nameVal,
+                "songArtist" : authorVal,
+                "songAlbum" : "Unknown",
+                "songImg" : "./assets/img/song.png",
+                "songTime" : "0:00",
+            }
+            songs.push(newSong)
+        })
+    })
+}
+
+
 
