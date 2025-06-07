@@ -135,11 +135,11 @@ Estimated time spent: **14** hours spent in total
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video actually renders and is playable when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
 
 `<div>
-    <a href="https://www.loom.com/share/5ca154534e4a47338cce09b1fb54a5ba">
+    <a href="https://www.loom.com/share/bf714c0903254aafbfcb982054cc9969">
       <p>Videos | Library | Loom - 6 June 2025 - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/5ca154534e4a47338cce09b1fb54a5ba">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/5ca154534e4a47338cce09b1fb54a5ba-a1a1a9c8fda64a37-full-play.gif">
+    <a href="https://www.loom.com/share/bf714c0903254aafbfcb982054cc9969">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/bf714c0903254aafbfcb982054cc9969-cc73bb663d59364c-full-play.gif">
     </a>
   </div>`
 
