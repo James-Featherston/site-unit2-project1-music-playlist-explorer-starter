@@ -6,7 +6,7 @@ Submitted by: **James Featherston**
 
 Estimated time spent: **14** hours spent in total
 
-Deployed Application (**required**): [Music Playlist Explorer Deployed Site]([https://site-unit2-project1-music-playlist-hhbc.onrender.com/])
+[Music Playlist Explorer Deployed Site](https://site-unit2-project1-music-playlist-hhbc.onrender.com/index.html)
 
 ### Application Features
 
